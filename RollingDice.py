@@ -1,6 +1,7 @@
 from graphics import *
 from random import *
 
+
 width = 140
 height = 150
 space = 15
@@ -53,9 +54,9 @@ def getCenter(topLeft,btmRight):
         centers.append(Point(topLeft[i].getX() + centerX,centerY))
     return centers
 
+# Drawing the dots on canvas
 def drawDots(win,center):
     nDots = randint(1,6)
-##    print("{0} dots".format(nDots))
     dot1 = Circle(Point(0,0),0)
     dot2 = Circle(Point(0,0),0)
     dot3 = Circle(Point(0,0),0)
@@ -113,6 +114,7 @@ def drawDots(win,center):
         dot6.setFill("white")
     return nDots
 
+#Compute the result = sum of all the dots displayed
 def compute_display(win,currentSum):
     label = Text(Point(100,200),"current sum:").draw(win)
     label.setSize(20)
@@ -120,6 +122,8 @@ def compute_display(win,currentSum):
     label.setFill("White")
     currentText.setSize(20)
     currentText.setFill("white") 
+    
+    
 def main():
     win = GraphWin("Rolling dice",1000,300)
     win.setBackground("black")
@@ -141,11 +145,12 @@ def main():
         yCoord = loca.getY()
         
         for current in center :
+            #check which box is clicked
             if xCoord >= current.getX() - width // 2 and xCoord <= current.getX() + width // 2 and yCoord >= current.getY() - height // 2 and yCoord <= current.getY() + height // 2:
                 dots = drawDots(win,current)
                 center.remove(current)
                 currentSum += dots
- 
+        #exit button is clicked
         if xCoord >= 910 and xCoord <= 990 and yCoord >= 250 and yCoord <= 290:
             win.close()
             canRun = False
